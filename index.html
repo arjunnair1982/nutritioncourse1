@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Healthy Plate — 4‑Week Adult Nutrition Course</title>
+  <meta name="description" content="A practical, science-based 4‑week nutrition course for busy adults. Bite-sized lessons, live Q&A, cooking demos, and tools that turn evidence into daily habits." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a;           /* slate-900 */
+      --panel:#0b1226;        /* deeper slate */
+      --text:#e2e8f0;         /* slate-200 */
+      --muted:#94a3b8;        /* slate-400 */
+      --brand:#14b8a6;        /* teal-500 */
+      --brand-2:#22d3ee;      /* cyan-400 */
+      --accent:#f59e0b;       /* amber-500 */
+      --ok:#22c55e;           /* green-500 */
+      --warn:#ef4444;         /* red-500 */
+      --card:#111827ee;       /* soft dark */
+      --ring: 0 0 0 3px rgba(20,184,166,.35);
+      --radius: 16px;
+      --shadow-lg: 0 20px 35px rgba(0,0,0,.35);
+      --shadow-md: 0 10px 20px rgba(0,0,0,.25);
+      --grad: linear-gradient(135deg, rgba(20,184,166,.25), rgba(34,211,238,.15));
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text); background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.14), transparent 60%),
+        radial-gradient(900px 500px at 10% 0%, rgba(20,184,166,.18), transparent 55%),
+        var(--bg);
+      line-height:1.6; letter-spacing:.2px;
+    }
+    a{color:var(--brand-2); text-decoration:none}
+    a:hover{opacity:.9}
+    .container{width:100%; max-width:1140px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(12px);
+      background:linear-gradient(to bottom, rgba(15,23,42,.9), rgba(15,23,42,.6));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.4px}
+    .logo{width:36px; height:36px; border-radius:10px; background:radial-gradient(100% 100% at 30% 20%, var(--brand) 0, var(--brand-2) 50%, transparent 100%), #052e2b; box-shadow:inset 0 0 24px rgba(34,211,238,.25),0 8px 18px rgba(0,0,0,.4)}
+    .navlinks{display:flex; gap:18px; align-items:center}
+    .navlinks a{color:var(--muted); font-weight:500}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; font-weight:700; border:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); box-shadow:var(--shadow-md)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#06161a; border:none}
+    .btn.primary:hover{filter:saturate(1.1) brightness(1.05)}
+    .btn.ghost{background:transparent}
+
+    /* Hero */
+    .hero{padding:72px 0 36px}
+    .hero-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:34px; align-items:center}
+    .kicker{display:inline-flex; align-items:center; gap:8px; color:#a7f3d0; background:rgba(20,184,166,.15); border:1px solid rgba(20,184,166,.25); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:700}
+    .title{font-size:clamp(32px, 5vw, 54px); line-height:1.06; margin:14px 0; font-weight:800}
+    .subtitle{color:var(--muted); font-size:18px; max-width:58ch}
+    .cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+    .trust{display:flex; gap:18px; align-items:center; color:var(--muted); margin-top:26px; font-size:14px}
+
+    .hero-card{border-radius:var(--radius); border:1px solid rgba(255,255,255,.06); padding:22px; background:var(--card); box-shadow:var(--shadow-lg)}
+    .plate{width:100%; aspect-ratio:1.1/1; background: radial-gradient(circle at 50% 45%, #0d2230 0, #0a1926 55%); border-radius:20px; position:relative; overflow:hidden}
+    .plate::after{content:""; position:absolute; inset:0; background:var(--grad)}
+    .food{position:absolute; border-radius:12px; padding:10px 12px; font-weight:700; font-size:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .food svg{width:18px; height:18px}
+    .food:nth-child(1){top:14%; left:10%}
+    .food:nth-child(2){top:28%; right:8%}
+    .food:nth-child(3){bottom:18%; left:12%}
+    .food:nth-child(4){bottom:10%; right:10%}
+
+    /* Section */
+    section{padding:64px 0}
+    .section-title{font-size:28px; margin:0 0 8px; font-weight:800}
+    .section-sub{color:var(--muted); margin:0 0 26px}
+
+    /* Cards grid */
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:20px}
+    .card{grid-column:span 4; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-md)}
+    .card h4{margin:0 0 10px}
+    .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:#a7f3d0; background:rgba(20,184,166,.12); border:1px solid rgba(20,184,166,.28); padding:6px 10px; border-radius:999px; font-weight:700}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:22px}
+    .timeline::before{content:""; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, rgba(34,211,238,.6), rgba(20,184,166,.2))}
+    .step{position:relative; margin:18px 0; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:16px}
+    .step::before{content:""; position:absolute; left:-6px; top:20px; width:12px; height:12px; border-radius:50%; background:var(--brand-2); box-shadow:0 0 0 3px rgba(34,211,238,.25)}
+
+    /* Feature rows */
+    .feature{display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:center}
+    .feature .ill{
+      background:radial-gradient(120px 80px at 30% 30%, rgba(34,211,238,.25), transparent 70%), radial-gradient(120px 80px at 70% 70%, rgba(20,184,166,.25), transparent 70%);
+      border:1px solid rgba(255,255,255,.07); border-radius:var(--radius); padding:20px; min-height:260px;
+    }
+
+    /* Pricing */
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+    .price-card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-md); position:relative}
+    .price{font-size:36px; font-weight:800}
+    .most{position:absolute; top:-12px; right:18px; background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#062a2f; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:900}
+
+    /* FAQ */
+    details{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px 16px}
+    summary{cursor:pointer; font-weight:700}
+
+    /* Footer */
+    footer{padding:36px 0; color:var(--muted); border-top:1px solid rgba(255,255,255,.08)}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid .card{grid-column:span 6}
+      .feature{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .grid .card{grid-column:span 12}
+      .title{font-size:32px}
+      .subtitle{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo" aria-hidden="true"></div> The Healthy Plate</div>
+      <nav class="navlinks">
+        <a href="#blueprint">Blueprint</a>
+        <a href="#format">Format</a>
+        <a href="#differentiators">Why Us</a>
+        <a href="#instructor">Instructor</a>
+        <a href="#pricing" class="btn ghost">Pricing</a>
+        <a href="#signup" class="btn primary">Join the 4‑Week Course</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker">4‑Week Adult Nutrition • Science → Action</div>
+          <h1 class="title">Eat Smarter, Feel Stronger —<br/>A Practical Course for Busy Adults</h1>
+          <p class="subtitle">Bite‑sized daily lessons, live Q&A, cooking demos, and tools that turn evidence into everyday habits. Designed for professionals, parents, and anyone managing lifestyle risks.</p>
+          <div class="cta">
+            <a href="#signup" class="btn primary">Enroll Now</a>
+            <a href="#game" class="btn">Play 3‑min Healthy Plate Game</a>
+          </div>
+          <div class="trust">
+            <span>Led by a nutritionist with 10+ years’ experience • 500+ clients coached</span>
+          </div>
+        </div>
+        <div>
+          <div class="hero-card">
+            <div class="plate" aria-label="Illustration of a healthy plate">
+              <div class="food" title="Leafy greens">🥬 Greens</div>
+              <div class="food" title="Whole grains">🌾 Whole Grains</div>
+              <div class="food" title="Healthy fats">🫒 Olive Oil</div>
+              <div class="food" title="Lean protein (fish)">🐟 Salmon</div>
+            </div>
+            <div style="margin-top:14px; color:var(--muted); font-size:14px">Drag‑and‑drop plate game included • Instant blind‑spots report • Free meal guide on completion</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blueprint -->
+    <section id="blueprint">
+      <div class="container">
+        <h2 class="section-title">4‑Week Blueprint</h2>
+        <p class="section-sub">Each week builds from science → skills → lifestyle → your personal plan.</p>
+        <div class="grid">
+          <div class="card">
+            <span class="badge">Week 1 • Foundation</span>
+            <h4>What to Eat & Why It Matters</h4>
+            <ul>
+              <li>Macros & micros made simple</li>
+              <li>Nutrient‑dense foods vs. empty calories</li>
+              <li>WHO targets: fat, sugar, salt</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="badge">Week 2 • Building Your Plate</span>
+            <h4>From Science to Supper</h4>
+            <ul>
+              <li>Dietary patterns: DASH & Mediterranean</li>
+              <li>Emphasize veggies, fruit, whole grains, legumes, nuts, fish</li>
+              <li>Meal planning, prep & budget swaps</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="badge">Week 3 • Lifestyle Connection</span>
+            <h4>More Than Food</h4>
+            <ul>
+              <li>Diet & chronic disease prevention</li>
+              <li>Six pillars: nutrition, activity, sleep, stress, relationships, risk avoidance</li>
+              <li>Psychology of eating & triggers</li>
+            </ul>
+          </div>
+          <div class="card" style="grid-column:span 12">
+            <span class="badge">Week 4 • Make It Last</span>
+            <h4>Your Personalized, Sustainable Plan</h4>
+            <div class="timeline">
+              <div class="step"><strong>Habit science:</strong> growth mindset, self‑compassion, tiny steps.</div>
+              <div class="step"><strong>Find your motivation:</strong> five‑step goal cycle.</div>
+              <div class="step"><strong>Create your plan:</strong> flexible, culture‑fit, preference‑aligned.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Format / Features -->
+    <section id="format">
+      <div class="container">
+        <h2 class="section-title">Designed for Busy Adults</h2>
+        <p class="section-sub">Short daily lessons, live support, and tools that make change stick.</p>
+        <div class="feature">
+          <div class="ill" aria-hidden="true"></div>
+          <div>
+            <ul>
+              <li><strong>Bite‑Sized:</strong> 5–10 min lessons, honest time estimates.</li>
+              <li><strong>Multi‑Format:</strong> videos, cooking demos, quizzes.</li>
+              <li><strong>High‑Touch:</strong> weekly live Q&A + supportive community.</li>
+              <li><strong>Action‑First:</strong> templates, shopping lists, habit trackers.</li>
+              <li><strong>Professional tone:</strong> expert, encouraging, no fluff.</li>
+            </ul>
+            <div style="margin-top:14px" class="cta">
+              <a href="#signup" class="btn primary">Reserve Your Seat</a>
+              <a href="#faq" class="btn">View FAQs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Differentiators -->
+    <section id="differentiators">
+      <div class="container">
+        <h2 class="section-title">What Makes Us Different</h2>
+        <p class="section-sub">We bridge evidence and everyday life — with heart.</p>
+        <div class="grid">
+          <div class="card"><h4>Lead with Wants</h4><p>We frame lessons around outcomes adults care about: energy, control, family health — not jargon.</p></div>
+          <div class="card"><h4>Personalized Support</h4><p>Live Q&A + community help you overcome barriers fast — no generic coaching.</p></div>
+          <div class="card"><h4>Culinary Skills</h4><p>Cooking demos & shopping walkthroughs make guidelines edible: simple, tasty, budget‑friendly.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructor -->
+    <section id="instructor">
+      <div class="container feature">
+        <div>
+          <h2 class="section-title">Meet Your Instructor</h2>
+          <p class="section-sub">Nutritionist • 10+ years • 500+ clients coached</p>
+          <p>Real‑world experience turning science into daily wins. Expect practical tips, empathy, and zero judgment.</p>
+          <ul>
+            <li>Specializes in adult lifestyle change</li>
+            <li>Expertise: metabolic health, heart health, family nutrition</li>
+          </ul>
+        </div>
+        <div class="ill" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- Game CTA -->
+    <section id="game">
+      <div class="container">
+        <h2 class="section-title">Try the 3‑Minute Healthy Plate Game</h2>
+        <p class="section-sub">Discover your nutrition blind spots — it’s quick and fun.</p>
+        <div class="cta">
+          <a class="btn primary" href="#signup">Play & Get Free Meal Guide</a>
+          <a class="btn" href="#">(Embed game here or link)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Schedule -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-title">Join the Next Cohort</h2>
+        <p class="section-sub">Choose the plan that fits your goals.</p>
+        <div class="pricing">
+          <div class="price-card">
+            <div class="price">€149</div>
+            <p><strong>Self‑Paced</strong></p>
+            <ul>
+              <li>All lessons & quizzes</li>
+              <li>Downloads & tools</li>
+              <li>Community access</li>
+            </ul>
+            <a href="#signup" class="btn primary" style="width:100%; justify-content:center">Enroll</a>
+          </div>
+          <div class="price-card">
+            <div class="most">Most Popular</div>
+            <div class="price">€249</div>
+            <p><strong>Guided</strong></p>
+            <ul>
+              <li>Everything in Self‑Paced</li>
+              <li>Weekly live Q&A</li>
+              <li>Personalized feedback on your plan</li>
+            </ul>
+            <a href="#signup" class="btn primary" style="width:100%; justify-content:center">Enroll</a>
+          </div>
+          <div class="price-card">
+            <div class="price">€449</div>
+            <p><strong>VIP</strong></p>
+            <ul>
+              <li>Everything in Guided</li>
+              <li>1× 45‑min private consult</li>
+              <li>Custom meal plan tweaks</li>
+            </ul>
+            <a href="#signup" class="btn primary" style="width:100%; justify-content:center">Enroll</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup -->
+    <section id="signup">
+      <div class="container">
+        <h2 class="section-title">Reserve Your Seat</h2>
+        <p class="section-sub">Get the syllabus + a free 1‑Day Healthy Meal Guide.</p>
+        <form id="leadForm" class="grid" onsubmit="return false" aria-label="Lead capture form">
+          <div class="card" style="grid-column:span 6">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required style="width:100%; margin-top:6px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1226; color:var(--text)">
+          </div>
+          <div class="card" style="grid-column:span 6">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required style="width:100%; margin-top:6px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1226; color:var(--text)">
+          </div>
+          <div class="card" style="grid-column:span 12">
+            <label for="goal">Your Top Goal</label>
+            <select id="goal" name="goal" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1226; color:var(--text)">
+              <option>All‑day energy</option>
+              <option>Family meal upgrades</option>
+              <option>Blood sugar & metabolic health</option>
+              <option>Heart‑healthy eating</option>
+              <option>Better habits & consistency</option>
+            </select>
+          </div>
+          <div style="grid-column:span 12; display:flex; gap:12px; align-items:center">
+            <button class="btn primary" onclick="submitLead()">Get Guide & Updates</button>
+            <small style="color:var(--muted)">We’ll never share your email. Unsubscribe anytime.</small>
+          </div>
+        </form>
+        <div id="thanks" class="card" style="display:none; margin-top:16px">
+          <h4>Welcome aboard! 🎉</h4>
+          <p>Check your inbox for the meal guide. We’ll follow up with the cohort schedule and a link to the 3‑minute game.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="grid">
+          <div class="card" style="grid-column:span 6">
+            <details>
+              <summary>How much time does it take?</summary>
+              <p>Plan for 5–10 minutes a day, plus an optional 60‑minute live Q&A each week.</p>
+            </details>
+          </div>
+          <div class="card" style="grid-column:span 6">
+            <details>
+              <summary>Is this suitable if I’m managing diabetes or heart risk?</summary>
+              <p>Yes. We focus on evidence‑based patterns (DASH, Mediterranean) shown to support cardiometabolic health. Always consult your clinician for personalized advice.</p>
+            </details>
+          </div>
+          <div class="card" style="grid-column:span 6">
+            <details>
+              <summary>Will I get personalized feedback?</summary>
+              <p>Guided and VIP tiers include weekly Q&A and tailored feedback. VIP adds a private consult.</p>
+            </details>
+          </div>
+          <div class="card" style="grid-column:span 6">
+            <details>
+              <summary>Do you provide meal plans?</summary>
+              <p>You’ll create a personalized, flexible plan in Week 4. We also provide sample plans and a recipe bank for inspiration.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap">
+      <div>© <span id="year"></span> The Healthy Plate • All rights reserved</div>
+      <div style="display:flex; gap:12px; align-items:center">
+        <a href="#" aria-label="Terms">Terms</a>
+        <a href="#" aria-label="Privacy">Privacy</a>
+        <a href="#signup" class="btn">Enroll</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Faux lead capture (replace with your backend / form service)
+    function submitLead(){
+      const form = document.getElementById('leadForm');
+      const thanks = document.getElementById('thanks');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){
+        alert('Please enter your name and email.'); return;
+      }
+      // Example: send to a webhook
+      // fetch('https://your-webhook-url', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, email, goal: document.getElementById('goal').value})});
+      form.style.display = 'none';
+      thanks.style.display = 'block';
+      window.scrollTo({top: thanks.offsetTop - 80, behavior: 'smooth'});
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href.length > 1){
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if(target){
+            window.scrollTo({top: target.offsetTop - 80, behavior:'smooth'});
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
