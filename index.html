@@ -123,6 +123,22 @@
       .title{font-size:32px}
       .subtitle{font-size:16px}
     }
+  /* --- Mini Game Styles --- */
+    .game-wrap{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-md)}
+    .game-hud{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:14px}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); font-weight:700; font-size:14px}
+    .game-board{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px}
+    .pantry{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
+    .item{user-select:none; cursor:grab; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); padding:10px 12px; display:flex; align-items:center; justify-content:space-between; font-weight:600}
+    .item[draggable="true"]:active{cursor:grabbing}
+    .item.small{font-size:14px}
+    .dropzone{position:relative; min-height:260px; border:2px dashed rgba(34,211,238,.35); border-radius:16px; background:radial-gradient(180px 120px at 30% 30%, rgba(20,184,166,.12), transparent 70%)}
+    .on-plate{display:flex; flex-wrap:wrap; gap:8px; padding:12px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); font-weight:700}
+    .chip.good{box-shadow:0 0 0 2px rgba(34,197,94,.35) inset}
+    .chip.bad{box-shadow:0 0 0 2px rgba(239,68,68,.35) inset}
+    .game-actions{display:flex; gap:10px; margin-top:10px}
+    .result{margin-top:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px}
   </style>
 </head>
 <body>
@@ -273,10 +289,46 @@
     <section id="game">
       <div class="container">
         <h2 class="section-title">Try the 3‑Minute Healthy Plate Game</h2>
-        <p class="section-sub">Discover your nutrition blind spots — it’s quick and fun.</p>
-        <div class="cta">
-          <a class="btn primary" href="#signup">Play & Get Free Meal Guide</a>
-          <a class="btn" href="#">(Embed game here or link)</a>
+        <p class="section-sub">Drag healthy foods onto the plate. Avoid sneaky, less healthy picks. Beat the clock!</p>
+        <div class="game-wrap" role="application" aria-label="Healthy Plate drag and drop game">
+          <div class="game-hud">
+            <div class="pill">⏱️ Time: <span id="gTime">3:00</span></div>
+            <div class="pill">⭐ Score: <span id="gScore">0</span></div>
+            <div class="pill">🎯 Goal: Mediterranean‑style plate</div>
+          </div>
+          <div class="game-board">
+            <div>
+              <h4 style="margin:6px 0 10px">Pantry</h4>
+              <div id="pantry" class="pantry">
+                <!-- Healthy -->
+                <div class="item small" draggable="true" data-id="salmon" data-good="true">🐟 Salmon <span>good</span></div>
+                <div class="item small" draggable="true" data-id="quinoa" data-good="true">🌾 Quinoa <span>good</span></div>
+                <div class="item small" draggable="true" data-id="spinach" data-good="true">🥬 Spinach <span>good</span></div>
+                <div class="item small" draggable="true" data-id="olive" data-good="true">🫒 Olive oil <span>good</span></div>
+                <div class="item small" draggable="true" data-id="almonds" data-good="true">🥜 Almonds <span>good</span></div>
+                <div class="item small" draggable="true" data-id="berries" data-good="true">🫐 Berries <span>good</span></div>
+                <!-- Less healthy / limit -->
+                <div class="item small" draggable="true" data-id="sausage" data-good="false">🌭 Sausage <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="fries" data-good="false">🍟 Fries <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="soda" data-good="false">🥤 Soda <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="donut" data-good="false">🍩 Donut <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="bacon" data-good="false">🥓 Bacon <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="butter" data-good="false">🧈 Butter <span>limit</span></div>
+              </div>
+            </div>
+            <div>
+              <h4 style="margin:6px 0 10px">Your Plate</h4>
+              <div id="dropzone" class="dropzone" aria-label="Drop foods here" tabindex="0">
+                <div id="onPlate" class="on-plate" aria-live="polite"></div>
+              </div>
+              <div class="game-actions">
+                <button class="btn primary" id="startGame">Start 3‑min Timer</button>
+                <button class="btn" id="finishGame">Finish Now</button>
+                <button class="btn" id="resetGame">Reset</button>
+              </div>
+              <div id="result" class="result" style="display:none"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -436,6 +488,100 @@
         }
       });
     });
+    // --- Healthy Plate Game Logic ---
+    (function(){
+      const pantry = document.getElementById('pantry');
+      const dropzone = document.getElementById('dropzone');
+      const onPlate = document.getElementById('onPlate');
+      const startBtn = document.getElementById('startGame');
+      const finishBtn = document.getElementById('finishGame');
+      const resetBtn = document.getElementById('resetGame');
+      const timeEl = document.getElementById('gTime');
+      const scoreEl = document.getElementById('gScore');
+      const resultEl = document.getElementById('result');
+
+      if(!pantry) return; // safety if section absent
+
+      const ideal = new Map([
+        ['salmon', true], ['quinoa', true], ['spinach', true], ['olive', true], ['almonds', true], ['berries', true],
+        ['sausage', false], ['fries', false], ['soda', false], ['donut', false], ['bacon', false], ['butter', false]
+      ]);
+
+      let placed = new Set();
+      let score = 0;
+      let secs = 180;
+      let timer = null;
+
+      function fmt(s){const m=Math.floor(s/60), r=String(s%60).padStart(2,'0'); return `${m}:${r}`}
+      function updateHUD(){timeEl.textContent = fmt(secs); scoreEl.textContent = score}
+      function reset(){
+        placed.clear(); score=0; secs=180; updateHUD();
+        onPlate.innerHTML=''; resultEl.style.display='none';
+        document.querySelectorAll('#pantry .item').forEach(el=>{el.setAttribute('draggable','true'); el.style.opacity=1});
+        if(timer){clearInterval(timer); timer=null}
+      }
+
+      function end(reason){
+        if(timer){clearInterval(timer); timer=null}
+        const required = ['salmon','quinoa','spinach','olive','almonds','berries'];
+        const missing = required.filter(id=>!placed.has(id));
+        const bad = Array.from(placed).filter(id=>ideal.get(id)===false);
+        const tips = [];
+        if(missing.length) tips.push(`Consider adding: <strong>${missing.map(id=>label(id)).join(', ')}</strong> for a Mediterranean‑style balance.`);
+        if(bad.length) tips.push(`Limit these: <strong>${bad.map(id=>label(id)).join(', ')}</strong>.`);
+        if(!tips.length) tips.push('Nice balance! You nailed the Mediterranean plate 👏');
+        resultEl.innerHTML = `<h4>Results (${reason})</h4><p><strong>Score:</strong> ${score}</p><ul><li>${tips.join('</li><li>')}</li></ul><p><a class="btn primary" href="#signup">Turn your wins into lasting habits → Join the 4‑Week Course</a></p>`;
+        resultEl.style.display='block';
+      }
+
+      function label(id){
+        const map={salmon:'🐟 salmon', quinoa:'🌾 quinoa', spinach:'🥬 spinach', olive:'🫒 olive oil', almonds:'🥜 almonds', berries:'🫐 berries', sausage:'🌭 sausage', fries:'🍟 fries', soda:'🥤 soda', donut:'🍩 donut', bacon:'🥓 bacon', butter:'🧈 butter'};
+        return map[id]||id;
+      }
+
+      function handleDragStart(e){
+        e.dataTransfer.setData('text/plain', e.currentTarget.dataset.id);
+      }
+      function handleDragOver(e){ e.preventDefault(); dropzone.style.boxShadow='0 0 0 3px rgba(34,211,238,.35) inset'}
+      function handleDragLeave(){ dropzone.style.boxShadow='none'}
+      function handleDrop(e){
+        e.preventDefault(); dropzone.style.boxShadow='none';
+        const id = e.dataTransfer.getData('text/plain');
+        if(!id) return;
+        if(placed.has(id)) return; // no duplicates
+        placed.add(id);
+        const good = ideal.get(id)===true;
+        score += good ? 2 : -1;
+        updateHUD();
+        const chip = document.createElement('div');
+        chip.className = 'chip ' + (good? 'good':'bad');
+        chip.textContent = label(id);
+        onPlate.appendChild(chip);
+        // dim pantry item
+        const src = pantry.querySelector(`[data-id="${id}"]`);
+        if(src){ src.setAttribute('draggable','false'); src.style.opacity=.4 }
+      }
+
+      pantry.querySelectorAll('.item[draggable="true"]').forEach(el=>{
+        el.addEventListener('dragstart', handleDragStart);
+      });
+      dropzone.addEventListener('dragover', handleDragOver);
+      dropzone.addEventListener('dragleave', handleDragLeave);
+      dropzone.addEventListener('drop', handleDrop);
+
+      startBtn.addEventListener('click', ()=>{
+        if(timer) return; // already running
+        timer = setInterval(()=>{
+          secs--; updateHUD();
+          if(secs<=0){ end('time up'); }
+        }, 1000);
+      });
+      finishBtn.addEventListener('click', ()=> end('finished'));
+      resetBtn.addEventListener('click', reset);
+
+      // init
+      updateHUD();
+    })();
   </script>
 </body>
 </html>
