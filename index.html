@@ -3,33 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Healthy Plate — 4‑Week Adult Nutrition Course</title>
-  <meta name="description" content="A practical, science-based 4‑week nutrition course for busy adults. Bite-sized lessons, live Q&A, cooking demos, and tools that turn evidence into daily habits." />
+  <title>The Healthy Plate — 4-Week Adult Nutrition Course</title>
+  <meta name="description" content="A practical, science-based 4-week nutrition course for busy adults. Bite-sized lessons, live Q&A, cooking demos, and tools that turn evidence into daily habits." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0f172a;           /* slate-900 */
-      --panel:#0b1226;        /* deeper slate */
-      --text:#e2e8f0;         /* slate-200 */
-      --muted:#94a3b8;        /* slate-400 */
-      --brand:#14b8a6;        /* teal-500 */
-      --brand-2:#22d3ee;      /* cyan-400 */
-      --accent:#f59e0b;       /* amber-500 */
-      --ok:#22c55e;           /* green-500 */
-      --warn:#ef4444;         /* red-500 */
-      --card:#111827ee;       /* soft dark */
-      --ring: 0 0 0 3px rgba(20,184,166,.35);
-      --radius: 16px;
-      --shadow-lg: 0 20px 35px rgba(0,0,0,.35);
-      --shadow-md: 0 10px 20px rgba(0,0,0,.25);
+      --bg:#0f172a; --panel:#0b1226; --text:#e2e8f0; --muted:#94a3b8;
+      --brand:#14b8a6; --brand-2:#22d3ee; --accent:#f59e0b; --ok:#22c55e; --warn:#ef4444;
+      --card:#111827ee; --ring: 0 0 0 3px rgba(20,184,166,.35);
+      --radius: 16px; --shadow-lg: 0 20px 35px rgba(0,0,0,.35); --shadow-md: 0 10px 20px rgba(0,0,0,.25);
       --grad: linear-gradient(135deg, rgba(20,184,166,.25), rgba(34,211,238,.15));
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text); background:
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+      color:var(--text);
+      background:
         radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.14), transparent 60%),
         radial-gradient(900px 500px at 10% 0%, rgba(20,184,166,.18), transparent 55%),
         var(--bg);
@@ -68,7 +60,6 @@
     .plate{width:100%; aspect-ratio:1.1/1; background: radial-gradient(circle at 50% 45%, #0d2230 0, #0a1926 55%); border-radius:20px; position:relative; overflow:hidden}
     .plate::after{content:""; position:absolute; inset:0; background:var(--grad)}
     .food{position:absolute; border-radius:12px; padding:10px 12px; font-weight:700; font-size:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); box-shadow:0 10px 24px rgba(0,0,0,.35)}
-    .food svg{width:18px; height:18px}
     .food:nth-child(1){top:14%; left:10%}
     .food:nth-child(2){top:28%; right:8%}
     .food:nth-child(3){bottom:18%; left:12%}
@@ -111,19 +102,7 @@
     /* Footer */
     footer{padding:36px 0; color:var(--muted); border-top:1px solid rgba(255,255,255,.08)}
 
-    /* Responsive */
-    @media (max-width: 1024px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid .card{grid-column:span 6}
-      .feature{grid-template-columns:1fr}
-      .pricing{grid-template-columns:1fr}
-    }
-    @media (max-width: 640px){
-      .grid .card{grid-column:span 12}
-      .title{font-size:32px}
-      .subtitle{font-size:16px}
-    }
-  /* --- Mini Game Styles --- */
+    /* --- Mini Game Styles --- */
     .game-wrap{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-md)}
     .game-hud{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:14px}
     .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); font-weight:700; font-size:14px}
@@ -137,8 +116,23 @@
     .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); font-weight:700}
     .chip.good{box-shadow:0 0 0 2px rgba(34,197,94,.35) inset}
     .chip.bad{box-shadow:0 0 0 2px rgba(239,68,68,.35) inset}
+
     .game-actions{display:flex; gap:10px; margin-top:10px}
     .result{margin-top:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:14px}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid .card{grid-column:span 6}
+      .feature{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .game-board{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .grid .card{grid-column:span 12}
+      .title{font-size:32px}
+      .subtitle{font-size:16px}
+    }
   </style>
 </head>
 <body>
@@ -151,7 +145,7 @@
         <a href="#differentiators">Why Us</a>
         <a href="#instructor">Instructor</a>
         <a href="#pricing" class="btn ghost">Pricing</a>
-        <a href="#signup" class="btn primary">Join the 4‑Week Course</a>
+        <a href="#signup" class="btn primary">Join the 4-Week Course</a>
       </nav>
     </div>
   </header>
@@ -161,12 +155,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="kicker">4‑Week Adult Nutrition • Science → Action</div>
+          <div class="kicker">4-Week Adult Nutrition • Science → Action</div>
           <h1 class="title">Eat Smarter, Feel Stronger —<br/>A Practical Course for Busy Adults</h1>
-          <p class="subtitle">Bite‑sized daily lessons, live Q&A, cooking demos, and tools that turn evidence into everyday habits. Designed for professionals, parents, and anyone managing lifestyle risks.</p>
+          <p class="subtitle">Bite-sized daily lessons, live Q&A, cooking demos, and tools that turn evidence into everyday habits. Designed for professionals, parents, and anyone managing lifestyle risks.</p>
           <div class="cta">
             <a href="#signup" class="btn primary">Enroll Now</a>
-            <a href="#game" class="btn">Play 3‑min Healthy Plate Game</a>
+            <a href="#game" class="btn">Play 3-min Healthy Plate Game</a>
           </div>
           <div class="trust">
             <span>Led by a nutritionist with 10+ years’ experience • 500+ clients coached</span>
@@ -180,7 +174,7 @@
               <div class="food" title="Healthy fats">🫒 Olive Oil</div>
               <div class="food" title="Lean protein (fish)">🐟 Salmon</div>
             </div>
-            <div style="margin-top:14px; color:var(--muted); font-size:14px">Drag‑and‑drop plate game included • Instant blind‑spots report • Free meal guide on completion</div>
+            <div style="margin-top:14px; color:var(--muted); font-size:14px">Drag-and-drop plate game included • Instant blind-spots report • Free meal guide on completion</div>
           </div>
         </div>
       </div>
@@ -189,7 +183,7 @@
     <!-- Blueprint -->
     <section id="blueprint">
       <div class="container">
-        <h2 class="section-title">4‑Week Blueprint</h2>
+        <h2 class="section-title">4-Week Blueprint</h2>
         <p class="section-sub">Each week builds from science → skills → lifestyle → your personal plan.</p>
         <div class="grid">
           <div class="card">
@@ -197,7 +191,7 @@
             <h4>What to Eat & Why It Matters</h4>
             <ul>
               <li>Macros & micros made simple</li>
-              <li>Nutrient‑dense foods vs. empty calories</li>
+              <li>Nutrient-dense foods vs. empty calories</li>
               <li>WHO targets: fat, sugar, salt</li>
             </ul>
           </div>
@@ -223,9 +217,9 @@
             <span class="badge">Week 4 • Make It Last</span>
             <h4>Your Personalized, Sustainable Plan</h4>
             <div class="timeline">
-              <div class="step"><strong>Habit science:</strong> growth mindset, self‑compassion, tiny steps.</div>
-              <div class="step"><strong>Find your motivation:</strong> five‑step goal cycle.</div>
-              <div class="step"><strong>Create your plan:</strong> flexible, culture‑fit, preference‑aligned.</div>
+              <div class="step"><strong>Habit science:</strong> growth mindset, self-compassion, tiny steps.</div>
+              <div class="step"><strong>Find your motivation:</strong> five-step goal cycle.</div>
+              <div class="step"><strong>Create your plan:</strong> flexible, culture-fit, preference-aligned.</div>
             </div>
           </div>
         </div>
@@ -241,10 +235,10 @@
           <div class="ill" aria-hidden="true"></div>
           <div>
             <ul>
-              <li><strong>Bite‑Sized:</strong> 5–10 min lessons, honest time estimates.</li>
-              <li><strong>Multi‑Format:</strong> videos, cooking demos, quizzes.</li>
-              <li><strong>High‑Touch:</strong> weekly live Q&A + supportive community.</li>
-              <li><strong>Action‑First:</strong> templates, shopping lists, habit trackers.</li>
+              <li><strong>Bite-Sized:</strong> 5–10 min lessons, honest time estimates.</li>
+              <li><strong>Multi-Format:</strong> videos, cooking demos, quizzes.</li>
+              <li><strong>High-Touch:</strong> weekly live Q&A + supportive community.</li>
+              <li><strong>Action-First:</strong> templates, shopping lists, habit trackers.</li>
               <li><strong>Professional tone:</strong> expert, encouraging, no fluff.</li>
             </ul>
             <div style="margin-top:14px" class="cta">
@@ -264,7 +258,7 @@
         <div class="grid">
           <div class="card"><h4>Lead with Wants</h4><p>We frame lessons around outcomes adults care about: energy, control, family health — not jargon.</p></div>
           <div class="card"><h4>Personalized Support</h4><p>Live Q&A + community help you overcome barriers fast — no generic coaching.</p></div>
-          <div class="card"><h4>Culinary Skills</h4><p>Cooking demos & shopping walkthroughs make guidelines edible: simple, tasty, budget‑friendly.</p></div>
+          <div class="card"><h4>Culinary Skills</h4><p>Cooking demos & shopping walkthroughs make guidelines edible: simple, tasty, budget-friendly.</p></div>
         </div>
       </div>
     </section>
@@ -275,7 +269,7 @@
         <div>
           <h2 class="section-title">Meet Your Instructor</h2>
           <p class="section-sub">Nutritionist • 10+ years • 500+ clients coached</p>
-          <p>Real‑world experience turning science into daily wins. Expect practical tips, empathy, and zero judgment.</p>
+          <p>Real-world experience turning science into daily wins. Expect practical tips, empathy, and zero judgment.</p>
           <ul>
             <li>Specializes in adult lifestyle change</li>
             <li>Expertise: metabolic health, heart health, family nutrition</li>
@@ -285,44 +279,47 @@
       </div>
     </section>
 
-    <!-- Game CTA -->
+    <!-- Game CTA + Embedded Game -->
     <section id="game">
       <div class="container">
-        <h2 class="section-title">Try the 3‑Minute Healthy Plate Game</h2>
+        <h2 class="section-title">Try the 3-Minute Healthy Plate Game</h2>
         <p class="section-sub">Drag healthy foods onto the plate. Avoid sneaky, less healthy picks. Beat the clock!</p>
+
         <div class="game-wrap" role="application" aria-label="Healthy Plate drag and drop game">
           <div class="game-hud">
             <div class="pill">⏱️ Time: <span id="gTime">3:00</span></div>
             <div class="pill">⭐ Score: <span id="gScore">0</span></div>
-            <div class="pill">🎯 Goal: Mediterranean‑style plate</div>
+            <div class="pill">🎯 Goal: Mediterranean-style plate</div>
           </div>
+
           <div class="game-board">
             <div>
               <h4 style="margin:6px 0 10px">Pantry</h4>
               <div id="pantry" class="pantry">
                 <!-- Healthy -->
-                <div class="item small" draggable="true" data-id="salmon" data-good="true">🐟 Salmon <span>good</span></div>
-                <div class="item small" draggable="true" data-id="quinoa" data-good="true">🌾 Quinoa <span>good</span></div>
+                <div class="item small" draggable="true" data-id="salmon"  data-good="true">🐟 Salmon <span>good</span></div>
+                <div class="item small" draggable="true" data-id="quinoa"  data-good="true">🌾 Quinoa <span>good</span></div>
                 <div class="item small" draggable="true" data-id="spinach" data-good="true">🥬 Spinach <span>good</span></div>
-                <div class="item small" draggable="true" data-id="olive" data-good="true">🫒 Olive oil <span>good</span></div>
+                <div class="item small" draggable="true" data-id="olive"   data-good="true">🫒 Olive oil <span>good</span></div>
                 <div class="item small" draggable="true" data-id="almonds" data-good="true">🥜 Almonds <span>good</span></div>
                 <div class="item small" draggable="true" data-id="berries" data-good="true">🫐 Berries <span>good</span></div>
                 <!-- Less healthy / limit -->
                 <div class="item small" draggable="true" data-id="sausage" data-good="false">🌭 Sausage <span>limit</span></div>
-                <div class="item small" draggable="true" data-id="fries" data-good="false">🍟 Fries <span>limit</span></div>
-                <div class="item small" draggable="true" data-id="soda" data-good="false">🥤 Soda <span>limit</span></div>
-                <div class="item small" draggable="true" data-id="donut" data-good="false">🍩 Donut <span>limit</span></div>
-                <div class="item small" draggable="true" data-id="bacon" data-good="false">🥓 Bacon <span>limit</span></div>
-                <div class="item small" draggable="true" data-id="butter" data-good="false">🧈 Butter <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="fries"   data-good="false">🍟 Fries <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="soda"    data-good="false">🥤 Soda <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="donut"   data-good="false">🍩 Donut <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="bacon"   data-good="false">🥓 Bacon <span>limit</span></div>
+                <div class="item small" draggable="true" data-id="butter"  data-good="false">🧈 Butter <span>limit</span></div>
               </div>
             </div>
+
             <div>
               <h4 style="margin:6px 0 10px">Your Plate</h4>
               <div id="dropzone" class="dropzone" aria-label="Drop foods here" tabindex="0">
                 <div id="onPlate" class="on-plate" aria-live="polite"></div>
               </div>
               <div class="game-actions">
-                <button class="btn primary" id="startGame">Start 3‑min Timer</button>
+                <button class="btn primary" id="startGame">Start 3-min Timer</button>
                 <button class="btn" id="finishGame">Finish Now</button>
                 <button class="btn" id="resetGame">Reset</button>
               </div>
@@ -341,7 +338,7 @@
         <div class="pricing">
           <div class="price-card">
             <div class="price">€149</div>
-            <p><strong>Self‑Paced</strong></p>
+            <p><strong>Self-Paced</strong></p>
             <ul>
               <li>All lessons & quizzes</li>
               <li>Downloads & tools</li>
@@ -354,7 +351,7 @@
             <div class="price">€249</div>
             <p><strong>Guided</strong></p>
             <ul>
-              <li>Everything in Self‑Paced</li>
+              <li>Everything in Self-Paced</li>
               <li>Weekly live Q&A</li>
               <li>Personalized feedback on your plan</li>
             </ul>
@@ -365,7 +362,7 @@
             <p><strong>VIP</strong></p>
             <ul>
               <li>Everything in Guided</li>
-              <li>1× 45‑min private consult</li>
+              <li>1× 45-min private consult</li>
               <li>Custom meal plan tweaks</li>
             </ul>
             <a href="#signup" class="btn primary" style="width:100%; justify-content:center">Enroll</a>
@@ -378,7 +375,7 @@
     <section id="signup">
       <div class="container">
         <h2 class="section-title">Reserve Your Seat</h2>
-        <p class="section-sub">Get the syllabus + a free 1‑Day Healthy Meal Guide.</p>
+        <p class="section-sub">Get the syllabus + a free 1-Day Healthy Meal Guide.</p>
         <form id="leadForm" class="grid" onsubmit="return false" aria-label="Lead capture form">
           <div class="card" style="grid-column:span 6">
             <label for="name">Full Name</label>
@@ -391,10 +388,10 @@
           <div class="card" style="grid-column:span 12">
             <label for="goal">Your Top Goal</label>
             <select id="goal" name="goal" style="width:100%; margin-top:6px; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,.14); background:#0b1226; color:var(--text)">
-              <option>All‑day energy</option>
+              <option>All-day energy</option>
               <option>Family meal upgrades</option>
               <option>Blood sugar & metabolic health</option>
-              <option>Heart‑healthy eating</option>
+              <option>Heart-healthy eating</option>
               <option>Better habits & consistency</option>
             </select>
           </div>
@@ -405,7 +402,7 @@
         </form>
         <div id="thanks" class="card" style="display:none; margin-top:16px">
           <h4>Welcome aboard! 🎉</h4>
-          <p>Check your inbox for the meal guide. We’ll follow up with the cohort schedule and a link to the 3‑minute game.</p>
+          <p>Check your inbox for the meal guide. We’ll follow up with the cohort schedule and a link to the 3-minute game.</p>
         </div>
       </div>
     </section>
@@ -418,13 +415,13 @@
           <div class="card" style="grid-column:span 6">
             <details>
               <summary>How much time does it take?</summary>
-              <p>Plan for 5–10 minutes a day, plus an optional 60‑minute live Q&A each week.</p>
+              <p>Plan for 5–10 minutes a day, plus an optional 60-minute live Q&A each week.</p>
             </details>
           </div>
           <div class="card" style="grid-column:span 6">
             <details>
               <summary>Is this suitable if I’m managing diabetes or heart risk?</summary>
-              <p>Yes. We focus on evidence‑based patterns (DASH, Mediterranean) shown to support cardiometabolic health. Always consult your clinician for personalized advice.</p>
+              <p>Yes. We focus on evidence-based patterns (DASH, Mediterranean) shown to support cardiometabolic health. Always consult your clinician for personalized advice.</p>
             </details>
           </div>
           <div class="card" style="grid-column:span 6">
@@ -456,7 +453,7 @@
   </footer>
 
   <script>
-    // Smooth year
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Faux lead capture (replace with your backend / form service)
@@ -465,13 +462,10 @@
       const thanks = document.getElementById('thanks');
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
-      if(!name || !email){
-        alert('Please enter your name and email.'); return;
-      }
+      if(!name || !email){ alert('Please enter your name and email.'); return; }
       // Example: send to a webhook
       // fetch('https://your-webhook-url', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, email, goal: document.getElementById('goal').value})});
-      form.style.display = 'none';
-      thanks.style.display = 'block';
+      form.style.display = 'none'; thanks.style.display = 'block';
       window.scrollTo({top: thanks.offsetTop - 80, behavior: 'smooth'});
     }
 
@@ -482,106 +476,166 @@
         if(href.length > 1){
           e.preventDefault();
           const target = document.querySelector(href);
-          if(target){
-            window.scrollTo({top: target.offsetTop - 80, behavior:'smooth'});
-          }
+          if(target){ window.scrollTo({top: target.offsetTop - 80, behavior:'smooth'}); }
         }
       });
     });
-    // --- Healthy Plate Game Logic ---
-    (function(){
-      const pantry = document.getElementById('pantry');
-      const dropzone = document.getElementById('dropzone');
-      const onPlate = document.getElementById('onPlate');
-      const startBtn = document.getElementById('startGame');
-      const finishBtn = document.getElementById('finishGame');
-      const resetBtn = document.getElementById('resetGame');
-      const timeEl = document.getElementById('gTime');
-      const scoreEl = document.getElementById('gScore');
-      const resultEl = document.getElementById('result');
 
-      if(!pantry) return; // safety if section absent
+    // === Healthy Plate Game (robust desktop + mobile) ===
+    window.addEventListener('DOMContentLoaded', function () {
+      const pantry    = document.getElementById('pantry');
+      const dropzone  = document.getElementById('dropzone');
+      const onPlate   = document.getElementById('onPlate');
+      const startBtn  = document.getElementById('startGame');
+      const finishBtn = document.getElementById('finishGame');
+      const resetBtn  = document.getElementById('resetGame');
+      const timeEl    = document.getElementById('gTime');
+      const scoreEl   = document.getElementById('gScore');
+      const resultEl  = document.getElementById('result');
+
+      if (!pantry || !dropzone) return; // Section not present
 
       const ideal = new Map([
-        ['salmon', true], ['quinoa', true], ['spinach', true], ['olive', true], ['almonds', true], ['berries', true],
-        ['sausage', false], ['fries', false], ['soda', false], ['donut', false], ['bacon', false], ['butter', false]
+        ['salmon', true], ['quinoa', true], ['spinach', true], ['olive', true],
+        ['almonds', true], ['berries', true],
+        ['sausage', false], ['fries', false], ['soda', false],
+        ['donut', false], ['bacon', false], ['butter', false]
       ]);
 
+      // State
       let placed = new Set();
-      let score = 0;
-      let secs = 180;
-      let timer = null;
+      let score  = 0;
+      let secs   = 180; // 3 minutes
+      let timer  = null;
 
-      function fmt(s){const m=Math.floor(s/60), r=String(s%60).padStart(2,'0'); return `${m}:${r}`}
-      function updateHUD(){timeEl.textContent = fmt(secs); scoreEl.textContent = score}
-      function reset(){
-        placed.clear(); score=0; secs=180; updateHUD();
-        onPlate.innerHTML=''; resultEl.style.display='none';
-        document.querySelectorAll('#pantry .item').forEach(el=>{el.setAttribute('draggable','true'); el.style.opacity=1});
-        if(timer){clearInterval(timer); timer=null}
+      // Utilities
+      const labels = {
+        salmon:'🐟 salmon', quinoa:'🌾 quinoa', spinach:'🥬 spinach',
+        olive:'🫒 olive oil', almonds:'🥜 almonds', berries:'🫐 berries',
+        sausage:'🌭 sausage', fries:'🍟 fries', soda:'🥤 soda',
+        donut:'🍩 donut', bacon:'🥓 bacon', butter:'🧈 butter'
+      };
+      const label = id => labels[id] || id;
+      const fmt   = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+      const updateHUD = () => { timeEl.textContent = fmt(secs); scoreEl.textContent = String(score); };
+
+      function reset() {
+        placed.clear(); score = 0; secs = 180; updateHUD();
+        resultEl.style.display = 'none'; resultEl.innerHTML = '';
+        onPlate.innerHTML = '';
+        document.querySelectorAll('#pantry .item').forEach(el => {
+          el.setAttribute('draggable','true'); el.style.opacity = 1; el.dataset.used = 'false';
+        });
+        dropzone.style.boxShadow = 'none';
+        if (timer) { clearInterval(timer); timer = null; }
       }
 
-      function end(reason){
-        if(timer){clearInterval(timer); timer=null}
+      function end(reason) {
+        if (timer) { clearInterval(timer); timer = null; }
         const required = ['salmon','quinoa','spinach','olive','almonds','berries'];
-        const missing = required.filter(id=>!placed.has(id));
-        const bad = Array.from(placed).filter(id=>ideal.get(id)===false);
-        const tips = [];
-        if(missing.length) tips.push(`Consider adding: <strong>${missing.map(id=>label(id)).join(', ')}</strong> for a Mediterranean‑style balance.`);
-        if(bad.length) tips.push(`Limit these: <strong>${bad.map(id=>label(id)).join(', ')}</strong>.`);
-        if(!tips.length) tips.push('Nice balance! You nailed the Mediterranean plate 👏');
-        resultEl.innerHTML = `<h4>Results (${reason})</h4><p><strong>Score:</strong> ${score}</p><ul><li>${tips.join('</li><li>')}</li></ul><p><a class="btn primary" href="#signup">Turn your wins into lasting habits → Join the 4‑Week Course</a></p>`;
-        resultEl.style.display='block';
+        const missing = required.filter(id => !placed.has(id));
+        const bad = Array.from(placed).filter(id => ideal.get(id) === false);
+
+        const parts = [];
+        parts.push(`<h4>Results (${reason})</h4>`);
+        parts.push(`<p><strong>Score:</strong> ${score}</p>`);
+        if (missing.length || bad.length) {
+          parts.push('<ul>');
+          if (missing.length) parts.push(`<li>Add for balance: <strong>${missing.map(label).join(', ')}</strong></li>`);
+          if (bad.length)     parts.push(`<li>Better to limit: <strong>${bad.map(label).join(', ')}</strong></li>`);
+          parts.push('</ul>');
+        } else {
+          parts.push('<p>Nice balance! You nailed the Mediterranean plate 👏</p>');
+        }
+        parts.push(`<p><a class="btn primary" href="#signup">Turn wins into habits → Join the 4-Week Course</a></p>`);
+        resultEl.innerHTML = parts.join('');
+        resultEl.style.display = 'block';
       }
 
-      function label(id){
-        const map={salmon:'🐟 salmon', quinoa:'🌾 quinoa', spinach:'🥬 spinach', olive:'🫒 olive oil', almonds:'🥜 almonds', berries:'🫐 berries', sausage:'🌭 sausage', fries:'🍟 fries', soda:'🥤 soda', donut:'🍩 donut', bacon:'🥓 bacon', butter:'🧈 butter'};
-        return map[id]||id;
+      // ----- Desktop drag & drop -----
+      function handleDragStart(e) {
+        const id = e.currentTarget?.dataset?.id;
+        if (!id || e.currentTarget.dataset.used === 'true') return;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', id);
       }
-
-      function handleDragStart(e){
-        e.dataTransfer.setData('text/plain', e.currentTarget.dataset.id);
+      function handleDragOver(e) {
+        e.preventDefault(); // Required to allow drop
+        e.dataTransfer.dropEffect = 'move';
+        dropzone.style.boxShadow = '0 0 0 3px rgba(34,211,238,.35) inset';
       }
-      function handleDragOver(e){ e.preventDefault(); dropzone.style.boxShadow='0 0 0 3px rgba(34,211,238,.35) inset'}
-      function handleDragLeave(){ dropzone.style.boxShadow='none'}
-      function handleDrop(e){
-        e.preventDefault(); dropzone.style.boxShadow='none';
+      function handleDragEnter(e) { e.preventDefault(); }
+      function handleDragLeave()  { dropzone.style.boxShadow = 'none'; }
+      function handleDrop(e) {
+        e.preventDefault();
+        dropzone.style.boxShadow = 'none';
         const id = e.dataTransfer.getData('text/plain');
-        if(!id) return;
-        if(placed.has(id)) return; // no duplicates
+        if (!id || placed.has(id)) return;
+        addToPlate(id);
+      }
+
+      // ----- Mobile / touch fallback (tap pantry item to add; tap chip to remove) -----
+      function addToPlate(id) {
         placed.add(id);
-        const good = ideal.get(id)===true;
+        const good = ideal.get(id) === true;
         score += good ? 2 : -1;
         updateHUD();
-        const chip = document.createElement('div');
-        chip.className = 'chip ' + (good? 'good':'bad');
+
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip ' + (good ? 'good' : 'bad');
+        chip.setAttribute('data-id', id);
+        chip.setAttribute('aria-label', `On plate: ${label(id)} (tap to remove)`);
         chip.textContent = label(id);
+        chip.addEventListener('click', () => removeFromPlate(id, chip));
         onPlate.appendChild(chip);
-        // dim pantry item
+
         const src = pantry.querySelector(`[data-id="${id}"]`);
-        if(src){ src.setAttribute('draggable','false'); src.style.opacity=.4 }
+        if (src) { src.setAttribute('draggable','false'); src.style.opacity = .4; src.dataset.used = 'true'; }
       }
 
-      pantry.querySelectorAll('.item[draggable="true"]').forEach(el=>{
+      function removeFromPlate(id, chipEl) {
+        if (!placed.has(id)) return;
+        const good = ideal.get(id) === true;
+        // Reverse score
+        score -= good ? 2 : -1;
+        updateHUD();
+        placed.delete(id);
+        chipEl.remove();
+        const src = pantry.querySelector(`[data-id="${id}"]`);
+        if (src) { src.setAttribute('draggable','true'); src.style.opacity = 1; src.dataset.used = 'false'; }
+      }
+
+      // Wire pantry items (desktop DnD + mobile tap)
+      pantry.querySelectorAll('.item').forEach(el => {
         el.addEventListener('dragstart', handleDragStart);
+        el.addEventListener('click', () => {
+          const id = el.dataset.id;
+          if (!id || el.dataset.used === 'true' || placed.has(id)) return;
+          addToPlate(id);
+        });
       });
+
+      // Wire dropzone
       dropzone.addEventListener('dragover', handleDragOver);
+      dropzone.addEventListener('dragenter', handleDragEnter);
       dropzone.addEventListener('dragleave', handleDragLeave);
       dropzone.addEventListener('drop', handleDrop);
 
-      startBtn.addEventListener('click', ()=>{
-        if(timer) return; // already running
-        timer = setInterval(()=>{
+      // Controls
+      startBtn.addEventListener('click', () => {
+        if (timer) return;
+        timer = setInterval(() => {
           secs--; updateHUD();
-          if(secs<=0){ end('time up'); }
+          if (secs <= 0) end('time up');
         }, 1000);
       });
-      finishBtn.addEventListener('click', ()=> end('finished'));
+      finishBtn.addEventListener('click', () => end('finished'));
       resetBtn.addEventListener('click', reset);
 
-      // init
+      // Init
       updateHUD();
-    })();
+    });
   </script>
 </body>
 </html>
